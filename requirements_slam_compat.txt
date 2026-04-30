@@ -1,0 +1,10 @@
+# Additional packages needed in the `slam` conda env to run SAEMark evaluation.
+# Assumes the slam env already has: torch, transformers, huggingface_hub,
+#   scikit-learn, scipy, statsmodels, nltk
+#
+# Install with:
+#   conda activate slam
+#   pip install -r requirements_slam_compat.txt
+
+bert-score>=0.3.13
+nltk>=3.9

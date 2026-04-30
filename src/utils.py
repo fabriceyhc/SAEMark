@@ -1,7 +1,6 @@
 # this file is utils to the main program
 import json
 import hashlib
-from text_generation import Client
 
 def generate_pseudo_number(model_name, seed):
     # use the SHA-256 hash function to generate the pseudo number
@@ -78,6 +77,7 @@ def output_dataset(filepath, content):
             f_output.write(f'{line}\n')
             
 def generate(prompt, generation_config, ip, port):
+    from text_generation import Client
     client = Client(base_url=f"http://{ip}:{port}", timeout=60)
     
     response = client.generate(
