@@ -6,5 +6,4 @@
 #   conda activate slam
 #   pip install -r requirements_slam_compat.txt
 
-bert-score>=0.3.13
 nltk>=3.9
