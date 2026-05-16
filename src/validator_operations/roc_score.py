@@ -25,14 +25,15 @@ def get_T_statistic(precise_numbers, ratios):
     return beta_t_statistic, beta_p_value
 
 def validate_roc_en(
-    sentence, 
-    public_keys, 
-    device, 
-    intervals, 
+    sentence,
+    public_keys,
+    device,
+    intervals,
     judge_model=None,
     judge_tokenizer=None,
     path_to_params=None,
-    feature_mask=None
+    feature_mask=None,
+    target_layer=20,
 ):
     max_ind = -1
     ratios = []
@@ -49,7 +50,7 @@ def validate_roc_en(
                 precise_number = generate_precise_number(public_key, '', intervals[i][0], intervals[i][1])
                 all_precise_numbers[i].append(precise_number)
         s = [s]
-        ans = calc_ratio(judge_model, judge_tokenizer, s, path_to_params, device=device, feature_mask=feature_mask)
+        ans = calc_ratio(judge_model, judge_tokenizer, s, path_to_params, device=device, feature_mask=feature_mask, target_layer=target_layer)
         max_ind, ratio = ans[0][0], ans[0][1]
         ratios.append(ratio)
 
@@ -94,7 +95,7 @@ def validate_roc_code(
                 precise_number = generate_precise_number(public_key, '', intervals[i][0], intervals[i][1])
                 all_precise_numbers[i].append(precise_number)
         s = [s]
-        ans = calc_ratio(judge_model, judge_tokenizer, s, path_to_params, device=device, feature_mask=feature_mask)
+        ans = calc_ratio(judge_model, judge_tokenizer, s, path_to_params, device=device, feature_mask=feature_mask, target_layer=target_layer)
         max_ind, ratio = ans[0][0], ans[0][1]
         ratios.append(ratio)
 
@@ -140,7 +141,7 @@ def validate_roc_zh(
                 precise_number = generate_precise_number(public_key, '', intervals[i][0], intervals[i][1])
                 all_precise_numbers[i].append(precise_number)
         s = [s]
-        ans = calc_ratio(judge_model, judge_tokenizer, s, path_to_params, device=device, feature_mask=feature_mask)
+        ans = calc_ratio(judge_model, judge_tokenizer, s, path_to_params, device=device, feature_mask=feature_mask, target_layer=target_layer)
         max_ind, ratio = ans[0][0], ans[0][1]
         ratios.append(ratio)
 
